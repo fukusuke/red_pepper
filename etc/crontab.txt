@@ -1,0 +1,3 @@
+# ==========================================================================================
+# delete old log data.
+0 2 * * * /bin/sh /home/red_pepper/src/CURRENT/scripts/clear_log.sh
