@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="/themes/default/default.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="/stylesheet/nivo-slider.css" type="text/css" media="screen" />
 
-        <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+        <script type="text/javascript" src="/js/jquery-1.7.1.min.js"></script>
         <script type="text/javascript" src="/js/jquery.nivo.slider.pack.js"></script>
 
         <!-- nivo-slider -->
