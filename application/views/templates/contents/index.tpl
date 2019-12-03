@@ -218,6 +218,10 @@
 								<td>090-4600-3780</td>
 							</tr>
 							<tr>
+								<td>メールアドレス</td>
+								<td>sakaino.tougarashi.honpo@gmail.com</td>
+							</tr>
+							<tr>
 								<td>定休日</td>
 								<td>日曜・祝日</td>
 							</tr>
