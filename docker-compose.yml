@@ -1,0 +1,48 @@
+# For more information: https://laravel.com/docs/sail
+services:
+    nginx:
+        build:
+            context: .
+            dockerfile: ./docker/nginx/Dockerfile
+        ports:
+            # Laravel port
+            - 8080:80
+        volumes:
+            - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+            - ./backend:/var/www/html/backend
+    mysql:
+        platform: linux/x86_64
+        image: 'mysql:8.0'
+        ports:
+            - '${FORWARD_DB_PORT:-3306}:3306'
+        environment:
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_DATABASE: '${DB_DATABASE}'
+            MYSQL_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+        volumes:
+            - mysql-data:/var/lib/mysql
+            - ./docker/db:/docker-entrypoint-initdb.d
+    phpmyadmin:
+        image: phpmyadmin
+        depends_on:
+            - mysql
+        environment:
+            - PMA_ARBITRARY=1
+            - PMA_HOSTS=mysql
+            - PMA_USER=root
+            - PMA_PASSWORD=
+        ports:
+            - "8081:80"
+    backend:
+        build:
+            context: .
+            dockerfile: ./docker/backend/Dockerfile
+            args:
+                WWWUSER: '${WWWUSER:-1000}'
+                WWWGROUP: '${WWWGROUP:-1000}'
+        volumes:
+            - ./backend:/var/www/html/backend
+        tty: true
+volumes:
+    mysql-data:
